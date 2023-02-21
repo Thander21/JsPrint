@@ -1,0 +1,126 @@
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<HTML>
+
+  <HEAD>
+    <title>PrintForm</title>
+
+    <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+      var t;
+      if (opener) {
+        if (opener.name == "MapFrame") {
+          t = opener.parent.MapFrame;
+        } else {
+          t = opener;
+        }
+      } else {
+
+        if (parent.MapFrame) {
+          t = parent.MapFrame;
+        } else {
+          t = document;
+        }
+      }
+
+      function goPrint() {
+        alert("Remember to set your print layout to Landscape if necessary before printing.");
+        var theForm = document.forms[0];
+        var theTitle = theForm.title.value;
+
+        // Get print size from form
+        var theMapHeight = theForm.height.value;
+        var theMapWidth = theForm.width.value;
+        t.getPrintMap(theTitle, theMapWidth, theMapHeight);
+
+        var useTextFrame = t.useTextFrame;
+        t = null;
+        if (opener) {
+          window.close();
+        } else {
+          if (useTextFrame) document.location = "text.htm";
+        }
+      }
+
+      //set the size of the print image
+      function setPrintSize(s) {
+
+        var mWidth = t.getMapWidth();
+        var mHeight = t.getMapHeight();
+
+        var w, h, r;
+        r = mHeight / mWidth;
+        switch (s) {
+          case 'letter':
+            w = 600;
+
+            break;
+
+          case 'tabloid':
+            w = 1000;
+            break;
+
+          case 'dsize':
+            w = 2200;
+            break;
+
+          case 'esize':
+            w = 3000;
+
+            break;
+          default:
+            w = 600;
+            break;
+        } // end switch
+        h = w * r;
+        document.thePrintForm.width.value = w;
+        document.thePrintForm.height.value = Math.round(h);
+      } // end function
+
+    </SCRIPT>
+  </HEAD>
+
+  <BODY BGCOLOR="White" style="font-family:Arial,sans-serif; color:black">
+    <FORM onsubmit="goPrint();return false;" name="thePrintForm" ID="Form1">
+      <table style="font-size:smaller;" width="100%" ID="Table1">
+        <tr valign="top">
+          <td width="200">
+            <b>Print Map</b>
+
+            <a href="PrintHelp.htm" target="_blank">Help</a><br>
+
+            <font size="-2">
+              Click Create Print Page, then use the menu's File-Print to send the map
+              to your printer.
+            </font>
+          </td>
+
+          <td align="center">
+            Title to display on Map:<br>
+            <INPUT TYPE="Text" NAME="title" VALUE="ArcIMS HTML Viewer Map" size="30" ID="Text1">
+          </td>
+
+          <td valign="middle" align="center">
+            <INPUT TYPE="Submit" NAME="submit" VALUE="Create Print Page" ID="Submit1">
+          </td>
+
+        </tr>
+        <tr>
+
+          <td colspan="2" align="center"> Size of Page:
+            <INPUT name="mapSize" type="radio" value="latter" checked onClick="setPrintSize('letter');" ID="Radio1">11x8.5
+            <INPUT name="mapSize" type="radio" value="tabloid" onClick="setPrintSize('tabloid');" ID="Radio2">17x11
+            <INPUT name="mapSize" type="radio" value="dsize" onClick="setPrintSize('dsize');" ID="Radio3">D Size
+            <INPUT name="mapSize" type="radio" value="esize" onClick="setPrintSize('esize');" ID="Radio4">E Size
+          </td>
+          <td colspan="2" align="center">
+            Map Width
+            <INPUT NAME="width" VALUE="600" size="5" style="font-size:xx-small; background-color:#CCCCCC" ID="Text2">
+            Height
+            <INPUT NAME="height" VALUE="450" size="5" style="font-size:xx-small; background-color:#CCCCCC" ID="Text3">
+            in pixels
+          </td>
+        </tr>
+      </table>
+    </form>
+  </BODY>
+
+</HTML>
