@@ -1,0 +1,46 @@
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Exemplo de impressão com jsPDF</title>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+        </head>
+        <body>
+          <h1>Exemplo de impressão com jsPDF</h1>
+          <p>Clique no botão abaixo para imprimir o conteúdo do elemento HTML.</p>
+          <button onclick="imprimir()">Imprimir</button>
+      
+          <div id="id-do-elemento">
+            <p>Hello World</p>      <p>Hello World</p>
+            <p>Hello World</p>
+            <p>Hello World</p>
+            <p>Hello World</p>
+            <p>Hello World</p>
+            <p>Hello World</p>
+            <p>Hello World</p>
+            <p>Hello World</p>
+            <p>Hello World</p>
+      
+            <p>Este é um exemplo de conteúdo a ser impresso.</p>
+          </div>
+      
+          <script>
+            function imprimir() {
+              // Obtém o elemento HTML desejado pelo ID
+              const element = document.getElementById('id-do-elemento');
+      
+              // Calcula a altura do elemento HTML
+              const elementHeight = element.offsetHeight;
+      
+              // Cria um novo objeto jsPDF com orientação paisagem e medidas de papel para uma bobina de 80mm
+              const pdf = new jsPDF('landscape', 'mm', [80, elementHeight]);
+      
+              // Adiciona o conteúdo do elemento HTML ao PDF
+              pdf.fromHTML(element);
+      
+              // Imprime o PDF usando um software de impressão de PDFs que suporte impressoras térmicas
+              pdf.output('dataurlnewwindow');
+            }
+          </script>
+        </body>
+      </html>
+      
