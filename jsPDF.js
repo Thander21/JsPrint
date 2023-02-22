@@ -23,8 +23,16 @@ function imprimir() {
     },
     function() {
       // Callback executado após a impressão do PDF
-      // Imprime o PDF usando um software de impressão de PDFs que suporte impressoras térmicas
-      pdf.output('dataurlnewwindow');
+      // Obter a string de dados do PDF codificada em base64
+      const pdfData = btoa(pdf.output());
+
+      // Definir a string de dados do PDF como o conteúdo de um elemento de imagem
+      const modalContent = document.getElementById('modalContent');
+      modalContent.innerHTML = `<img src="data:application/pdf;base64,${pdfData}">`;
+
+      // Exibir o modal
+      const modal = document.getElementById('modal');
+      modal.style.display = 'block';
     }
   );
 }
