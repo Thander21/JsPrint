@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<style>
+    @media print {
+        #PrintBody {
+            page-break-before: always;
+        }
+    }
+</style>
+
+<head>
+    <title>Exemplo de Impressão</title>
+</head>
+
+<body>
+    <div id="PrintBody">
+        <h1>Exemplo de Impressão</h1>
+        <p>Este é um exemplo de página para testar a impressão com JavaScript.</p>
+        p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod dui in nunc tincidunt commodo. Sed
+        auctor, sapien at commodo bibendum, velit nulla semper dolor, eu volutpat justo nisl ac sapien. Praesent vitae
+        tortor tincidunt, feugiat lacus sed, faucibus velit. Ut fringilla, turpis non fermentum faucibus, felis nisl
+        vestibulum magna, id interdum sapien magna eget elit. Sed non ex non tortor auctor consectetur. Aenean bibendum
+        euismod ligula, ac dapibus urna faucibus at. Aliquam euismod odio in eros gravida, vel tempor orci euismod.
+        Vivamus vel malesuada mauris, sed varius ipsum. Suspendisse potenti. Nullam efficitur, nulla eget pharetra
+        tincidunt, purus mi pretium sapien, ac viverra risus mauris at odio.</p>
+        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent hendrerit
+            erat ac feugiat pretium. Mauris feugiat bibendum velit et convallis. Vestibulum ante ipsum primis in
+            faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse maximus vestibulum lorem id
+            sollicitudin. Vestibulum lobortis nisi in lobortis varius. Pellentesque sit amet luctus erat. Vestibulum
+            ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent aliquet magna id
+            mauris euismod, id pretium ex cursus. Aliquam nec pretium mauris, vel vestibulum mauris. Vestibulum ante
+            ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam ac purus eros.</p>
+        <p>Etiam sagittis libero ac nunc rhoncus, sed tincidunt nunc hendrerit. Proin posuere erat ut purus consectetur,
+            a malesuada erat aliquet. Nam feugiat sapien in bibendum feugiat. Fusce euismod libero mi, at laoreet risus
+            pharetra eu. Donec bibendum eros vel lacus blandit, ut cursus nulla luctus. Nulla tempor id velit vel
+            blandit. Nulla eget ultricies ipsum. Proin finibus ultrices risus, a egestas risus malesuada a. Phasellus eu
+            eros sed mauris ullamcorper rutrum eu vel sapien. Praesent eu malesuada ante. Sed malesuada
+    </div>
+    <button onclick="printPage()">Imprimir</button>
+</body>
+
+<script>
+    function printPage() {
+        const printContents = document.getElementById('PrintBody').innerHTML;
+        const documentTitle = document.title;
+        const paperWidth = 72; // largura em mm
+        const paperHeight = 3276; // altura em mm
+        const printWindow = window.open('', '', `width=${paperWidth}mm,height=${paperHeight}mm`);
+        printWindow.document.write(`<html><head><title>${documentTitle}</title></head><body>${printContents}</body></html>`);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+    }
+</script>
+
+</html>
