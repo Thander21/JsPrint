@@ -20,12 +20,11 @@ function imprimir() {
       // opções de formatação
       width: 70, // largura do conteúdo (em mm)
       height: elementHeightMm, // limite de altura do conteúdo (em mm)
+    },
+    function() {
+      // Callback executado após a impressão do PDF
+      // Abre o PDF em uma nova janela de popup
+      window.open(pdf.output('bloburl'), '_blank');
     }
   );
-
-  // Exibe o PDF em um modal
-  const pdfData = pdf.output('datauristring');
-  const modal = document.getElementById('pdfModal');
-  modal.querySelector('iframe').src = pdfData;
-  modal.style.display = 'block';
 }
