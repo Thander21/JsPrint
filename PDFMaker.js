@@ -29,13 +29,14 @@ var docDefinition = {
 
 // Gere o arquivo PDF e exiba o link para download
 var gerarBotao = document.getElementById('gerar');
-gerarBotao.addEventListener('click', function () {
+if (gerarBotao) {
+  gerarBotao.addEventListener('click', function () {
     var pdfDocGenerator = pdfMake.createPdf(docDefinition);
     pdfDocGenerator.getBlob(function (blob) {
-        var blobUrl = URL.createObjectURL(blob);
-        var pdfWindow = window.open('', '_blank', 'height=600,width=800');
-        pdfWindow.document.write('<html><head><title>Documento PDF</title></head><body style="margin: 0;"><embed width="100%" height="100%" name="plugin" src="' + blobUrl + '" type="application/pdf" /></body></html>');
-
-        pdfWindow.location.href = blobUrl;
+      var blobUrl = URL.createObjectURL(blob);
+      var pdfWindow = window.open('', '_blank', 'height=600,width=800');
+      pdfWindow.document.write('<html><head><title>Documento PDF</title></head><body style="margin: 0;"><embed width="100%" height="100%" name="plugin" src="' + blobUrl + '" type="application/pdf" /></body></html>');
+      pdfWindow.location.href = blobUrl;
     });
-});
+  });
+}
