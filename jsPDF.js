@@ -1,20 +1,28 @@
-
 function imprimir() {
   // Obtém o elemento HTML desejado pelo ID
-  const element = document.getElementById('id-do-elemento');
-
-  // Calcula a altura do elemento HTML
-  const elementHeight = element.offsetHeight;
+  const element = document.getElementById('elementPrint');
 
   // Cria um novo objeto jsPDF com orientação paisagem e medidas de papel para uma bobina de 80mm
-  const pdf = new jsPDF('landscape', 'mm', [80, elementHeight]);
+  const pdf = new jsPDF('landscape', 'mm', [80, 297]); // altura de 297mm = A4
 
   // Adiciona o conteúdo do elemento HTML ao PDF
-  pdf.fromHTML(element);
-
-  // Imprime o PDF usando um software de impressão de PDFs que suporte impressoras térmicas
-  pdf.output('dataurlnewwindow');
+  pdf.fromHTML(
+    element,
+    5, // posição horizontal de início do conteúdo (em mm)
+    0, // posição vertical de início do conteúdo (em mm)
+    {
+      // opções de formatação
+      width: 70, // largura do conteúdo (em mm)
+      height: 287, // limite de altura do conteúdo (em mm)
+    },
+    function() {
+      // Callback executado após a impressão do PDF
+      // Imprime o PDF usando um software de impressão de PDFs que suporte impressoras térmicas
+      pdf.output('dataurlnewwindow');
+    }
+  );
 }
+
 
 /*
 function imprimir() {
@@ -51,3 +59,4 @@ function imprimir() {
   // Abre a janela de impressão
   pdf.output('dataurlnewwindow');
 }
+*/
