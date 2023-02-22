@@ -12,19 +12,5 @@ function imprimir() {
   const pdf = new jsPDF('portrait', 'mm', [80, elementHeightMm]);
 
   // Adiciona o conteúdo do elemento HTML ao PDF
-  pdf.fromHTML(
-    element,
-    5, // posição horizontal de início do conteúdo (em mm)
-    0, // posição vertical de início do conteúdo (em mm)
-    {
-      // opções de formatação
-      width: 70, // largura do conteúdo (em mm)
-      height: elementHeightMm, // limite de altura do conteúdo (em mm)
-    },
-    function() {
-      // Callback executado após a impressão do PDF
-      // Abre o PDF em uma nova janela de popup
-      window.open(pdf.output('bloburl'), '_blank');
-    }
-  );
+  window.open(pdf.output('bloburl'), '_blank');
 }
