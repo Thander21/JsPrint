@@ -37,12 +37,8 @@
         var pdfDocGenerator = pdfMake.createPdf(docDefinition);
         pdfDocGenerator.getBlob(function(blob) {
           var blobUrl = URL.createObjectURL(blob);
-          var link = document.createElement('a');
-          link.style.display = 'none';
-          link.href = blobUrl;
-          link.target = '_blank';
-          link.download = 'documento.pdf';
-          document.body.appendChild(link);
-          link.click();
+          var pdfWindow = window.open('', '_blank', 'height=600,width=800');
+          pdfWindow.document.write('<html><head><title>Documento PDF</title></head><body style="margin: 0;"><embed width="100%" height="100%" name="plugin" src="' + blobUrl + '" type="application/pdf" /></body></html>');
+          pdfWindow.print();
         });
       });
