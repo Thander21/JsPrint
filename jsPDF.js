@@ -18,5 +18,5 @@ function imprimir() {
   pdf.autoTable(table);
 
   // Imprime o PDF usando um software de impressão de PDFs que suporte impressoras térmicas
-  pdf.output('dataurlnewwindow');
+  pdf.output('dataurl');
 }
