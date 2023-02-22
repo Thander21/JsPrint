@@ -1,19 +1,34 @@
 function imprimir() {
+  // Obtém o elemento HTML desejado pelo ID
   const element = document.getElementById('elementPrint');
+
+  // Obtém a altura total do conteúdo (em pixels)
   const elementHeight = element.scrollHeight;
 
-  const pdf = new jsPDF('portrait', 'mm', 'thermal', false);
-  const margins = {
-    top: 10,
-    bottom: 10,
-    left: 10,
-    right: 10,
-    width: 80
-  };
-  
-  const contentWidth = margins.width - margins.left - margins.right;
-  const pdfContent = pdf.splitTextToSize(element.innerText, contentWidth);
-  pdf.setPage(1);
-  pdf.text(margins.left, margins.top, pdfContent);
+  // Converte a altura do conteúdo de pixels para milímetros
+  const elementHeightMm = elementHeight * 0.264583;
+
+  // Cria um novo objeto jsPDF com orientação retrato e altura da página definida pelo tamanho do elemento HTML
+  const pdf = new jsPDF('portrait', 'mm', [80, elementHeightMm]);
+
+  // Cria a tabela com o conteúdo do elemento HTML
+  const table = pdf.autoTableHtmlToJson(element);
+
+  // Configura a altura da página de acordo com o tamanho do elemento HTML
+  pdf.internal.pageSize.height = elementHeightMm;
+
+  // Verifica se a tabela cabe na página atual e, se não, adiciona uma nova página antes de adicionar a tabela
+  const y = pdf.autoTable.previous.finalY;
+  if (y + table.height > pdf.internal.pageSize.height) {
+    pdf.addPage();
+  }
+
+  // Adiciona a tabela ao PDF
+  pdf.autoTable(table);
+
+  // Adiciona uma quebra de página no final do documento
+  pdf.addPage();
+
+  // Abre a janela de impressão
   pdf.output('dataurlnewwindow');
 }
