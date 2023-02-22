@@ -20,11 +20,12 @@ function imprimir() {
       // opções de formatação
       width: 70, // largura do conteúdo (em mm)
       height: elementHeightMm, // limite de altura do conteúdo (em mm)
-    },
-    function() {
-      // Callback executado após a impressão do PDF
-      // Imprime o PDF usando um software de impressão de PDFs que suporte impressoras térmicas
-      pdf.output('dataurlnewwindow');
     }
   );
+
+  // Exibe o PDF em um modal
+  const pdfData = pdf.output('datauristring');
+  const modal = document.getElementById('pdfModal');
+  modal.querySelector('iframe').src = pdfData;
+  modal.style.display = 'block';
 }

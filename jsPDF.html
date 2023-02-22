@@ -1,59 +1,79 @@
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Exemplo de impressão com jsPDF</title>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-          <script src="jsPDF.js" type="text/javascript"></script>
-        </head>
-        <body>
-          <h1>Exemplo de impressão com jsPDF</h1>
-          <p>Clique no botão abaixo para imprimir o conteúdo do elemento HTML.</p>
-          <button onclick="imprimir()">Imprimir</button>
-      
-            <div data-container="" id="elementPrint">
-                <div data-container="" class="card">
-                    <div data-container="" class="ThemeGrid_Width6"><label data-label=""
-                            class="OSFillParent">Cliente Nome</label><span data-expression="">ra</span></div>
-                    <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
-                            class="OSFillParent">Cliente Email</label><span data-expression=""></span></div>
-                    <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label
-                            data-label="" class="OSFillParent">Cliente Telefone</label><span
-                            data-expression="">(85) 99193-4455</span></div>
-                    <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
-                            class="OSFillParent">Cliente Logradouro</label><span data-expression="">test</span>
-                    </div>
-                    <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label
-                            data-label="" class="OSFillParent">Cliente Numero</label><span
-                            data-expression="">22</span></div>
-                    <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
-                            class="OSFillParent">Cliente Bairro</label><span data-expression="">teste</span>
-                    </div>
-                    <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label
-                            data-label="" class="OSFillParent">Cliente Municipio</label><span
-                            data-expression="">Natal</span></div>
-                    <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
-                            class="OSFillParent">Cliente UF</label><span data-expression="">RN</span></div>
-                    <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label
-                            data-label="" class="OSFillParent">Cliente CEP</label><span
-                            data-expression=""></span></div>
-                    <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
-                            class="OSFillParent">Cliente Complemento</label><span data-expression="">test</span>
-                    </div>
-                    <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label
-                            data-label="" class="OSFillParent">Cliente Ponto Referencia</label><span
-                            data-expression="">stest</span></div>
-                    <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
-                            class="OSFillParent">Tipo</label><span data-expression="">2</span></div>
-                    <div data-container=""><label data-label="" class="OSFillParent">Tempo Para
-                            Entrega</label><span data-expression="">0</span></div>
-                    <div data-container=""><label data-label="" class="OSFillParent">Valor Produtos</label><span
-                            data-expression="">64.90</span></div>
-                    <div data-container=""><label data-label="" class="OSFillParent">Valor Desconto</label><span
-                            data-expression="">0.00</span></div>
-                    <div data-container=""><label data-label="" class="OSFillParent">Valor Taxa
-                            Entrega</label><span data-expression="">0.00</span></div>
+<!DOCTYPE html>
+<html>
+
+<head>
+
+        <meta charset="UTF-8">
+        <style>
+                #elementPrint {
+                        font-size: 12pt;
+                        line-height: 1.5;
+                        margin: 20px;
+                }
+        </style>
+
+        <title>Exemplo de impressão com jsPDF</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+        <script src="jsPDF.js" type="text/javascript"></script>
+</head>
+
+<body>
+        <h1>Exemplo de impressão com jsPDF</h1>
+        <p>Clique no botão abaixo para imprimir o conteúdo do elemento HTML.</p>
+        <button onclick="imprimir()">Imprimir</button>
+
+        <div id="pdfModal" style="display: none;">
+                <div class="modal-content">
+                        <iframe width="100%" height="100%"></iframe>
                 </div>
-            </div>
-        </body>
-      </html>
-      
+        </div>
+
+        <div data-container="" id="elementPrint">
+                <div data-container="" class="card">
+                        <div data-container="" class="ThemeGrid_Width6"><label data-label=""
+                                        class="OSFillParent">Cliente Nome</label><span data-expression="">ra</span>
+                        </div>
+                        <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
+                                        class="OSFillParent">Cliente Email</label><span data-expression=""></span></div>
+                        <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label data-label=""
+                                        class="OSFillParent">Cliente Telefone</label><span data-expression="">(85)
+                                        99193-4455</span></div>
+                        <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
+                                        class="OSFillParent">Cliente Logradouro</label><span
+                                        data-expression="">test</span>
+                        </div>
+                        <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label data-label=""
+                                        class="OSFillParent">Cliente Numero</label><span data-expression="">22</span>
+                        </div>
+                        <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
+                                        class="OSFillParent">Cliente Bairro</label><span data-expression="">teste</span>
+                        </div>
+                        <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label data-label=""
+                                        class="OSFillParent">Cliente Municipio</label><span
+                                        data-expression="">Natal</span></div>
+                        <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
+                                        class="OSFillParent">Cliente UF</label><span data-expression="">RN</span></div>
+                        <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label data-label=""
+                                        class="OSFillParent">Cliente CEP</label><span data-expression=""></span></div>
+                        <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
+                                        class="OSFillParent">Cliente Complemento</label><span
+                                        data-expression="">test</span>
+                        </div>
+                        <div data-container="" class="ThemeGrid_Width6" style="margin-left: 0px;"><label data-label=""
+                                        class="OSFillParent">Cliente Ponto Referencia</label><span
+                                        data-expression="">stest</span></div>
+                        <div data-container="" class="ThemeGrid_Width6 ThemeGrid_MarginGutter"><label data-label=""
+                                        class="OSFillParent">Tipo</label><span data-expression="">2</span></div>
+                        <div data-container=""><label data-label="" class="OSFillParent">Tempo Para
+                                        Entrega</label><span data-expression="">0</span></div>
+                        <div data-container=""><label data-label="" class="OSFillParent">Valor Produtos</label><span
+                                        data-expression="">64.90</span></div>
+                        <div data-container=""><label data-label="" class="OSFillParent">Valor Desconto</label><span
+                                        data-expression="">0.00</span></div>
+                        <div data-container=""><label data-label="" class="OSFillParent">Valor Taxa
+                                        Entrega</label><span data-expression="">0.00</span></div>
+                </div>
+        </div>
+</body>
+
+</html>
