@@ -5,7 +5,7 @@ var pageSize = {
 };
 
 // Crie o conteúdo do PDF (este é apenas um exemplo - substitua pelo seu próprio conteúdo)
-var content = [    { text: 'Exemplo de impressão térmica', style: 'header' },    { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', style: 'body' },    { text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.', style: 'body' }];
+var content = [{ text: 'Exemplo de impressão térmica', style: 'header' }, { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', style: 'body' }, { text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.', style: 'body' }];
 
 // Defina os estilos do PDF (novamente, substitua pelos seus próprios estilos)
 var styles = {
@@ -34,11 +34,8 @@ gerarBotao.addEventListener('click', function () {
     pdfDocGenerator.getBlob(function (blob) {
         var blobUrl = URL.createObjectURL(blob);
         var pdfWindow = window.open('', '_blank', 'height=600,width=800');
-        pdfWindow.document.write('<html><head><title>Documento PDF</title></head><body style="margin: 0;"><object data="' + blobUrl + '" type="application/pdf" width="100%" height="100%"><p>Seu navegador não suporta PDF. <a href="' + blobUrl + '">Clique aqui para baixar o PDF</a>.</p></object></body></html>');
+        pdfWindow.document.write('<html><head><title>Documento PDF</title></head><body style="margin: 0;"><embed width="100%" height="100%" name="plugin" src="' + blobUrl + '" type="application/pdf" /></body></html>');
 
-        // Aguarde a janela carregar antes de imprimir o PDF
-        pdfWindow.addEventListener('load', function () {
-            pdfWindow.print();
-        });
+        pdfWindow.location.href = blobUrl;
     });
 });
