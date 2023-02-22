@@ -11,9 +11,11 @@ function imprimir() {
   // Cria um novo objeto jsPDF com orientação retrato e medidas de papel para uma bobina de 80mm
   const pdf = new jsPDF('portrait', 'mm', [80, elementHeightMm]);
 
+  // Adiciona o conteúdo do elemento HTML ao PDF
   pdf.fromHTML(element);
 
-  window.open(pdf.output('bloburl'), '_self');
-  
+  // Imprime o PDF usando um software de impressão de PDFs que suporte impressoras térmicas
+  pdf.output('dataurlnewwindow');
+
 }
 
