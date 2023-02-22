@@ -11,12 +11,9 @@ function imprimir() {
   // Cria um novo objeto jsPDF com orientação retrato e medidas de papel para uma bobina de 80mm
   const pdf = new jsPDF('portrait', 'mm', [80, elementHeightMm]);
 
-   // Usa a biblioteca html2pdf para converter o elemento em um PDF
-   html2pdf().from(element).outputPdf().then(function (pdf) {
-    // Abre o PDF em uma nova janela de popup
-    window.open(URL.createObjectURL(pdf), '_blank');
-  });
+  pdf.fromHTML(element);
 
-  // window.open(pdf.output('bloburl'), '_self');
+  window.open(pdf.output('bloburl'), '_self');
+  
 }
 
