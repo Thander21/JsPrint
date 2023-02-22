@@ -12,5 +12,6 @@ function imprimir() {
   const pdf = new jsPDF('portrait', 'mm', [80, elementHeightMm]);
 
   // Adiciona o conteúdo do elemento HTML ao PDF
-  window.open(pdf.output('bloburl'), '_blank');
+  window.open(pdf.output('bloburl'), '_self');
 }
+
