@@ -4,25 +4,17 @@
 <head>
 
         <meta charset="UTF-8">
-        <style>
-                #elementPrint {
-                        font-size: 12pt;
-                        line-height: 1.5;
-                        margin: 20px;
-                }
-        </style>
-
         <title>Exemplo de impressão com jsPDF</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
-
+        <link rel="stylesheet" href="jsPDF.css">
         <script src="jsPDF.js" type="text/javascript"></script>
 </head>
 
 <body>
         <h1>Exemplo de impressão com jsPDF</h1>
         <p>Clique no botão abaixo para imprimir o conteúdo do elemento HTML.</p>
-        <button onclick="imprimir()">Imprimir PDF</button>
+        <button class="button" onclick="imprimir()">Imprimir PDF</button>
        
         <div data-container="" id="elementPrint">
                 <div data-container="" class="card">

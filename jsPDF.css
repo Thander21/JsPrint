@@ -1,0 +1,10 @@
+#elementPrint {
+    font-size: 10pt;
+    line-height: 1.2;
+    margin: 20px;
+}
+
+.button {
+    padding:  5px;
+    background-color: blue;
+}
