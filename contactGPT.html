@@ -50,7 +50,7 @@
         function updateSigninStatus(isSignedIn) {
             if (isSignedIn) {
                 authorizeButton.style.display = 'none';
-                signoutButton.style.display = 'block';
+                document.getElementById('authorize_button').style.display = 'block';
                 listContacts();
             } else {
                 authorizeButton.style.display = 'block';
