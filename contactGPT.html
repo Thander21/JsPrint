@@ -38,8 +38,8 @@
 
                 // Verifica o status de autenticação atual
                 updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-                authorizeButton.onclick = handleAuthClick;
-                signoutButton.onclick = handleSignoutClick;
+                document.getElementById('authorize_button').onclick = handleAuthClick;
+                document.getElementById('signout_button').onclick = handleSignoutClick;
             }, function (error) {
                 console.log(JSON.stringify(error, null, 2));
             });
@@ -48,12 +48,12 @@
         // Funções de autenticação
         function updateSigninStatus(isSignedIn) {
             if (isSignedIn) {
-                authorizeButton.style.display = 'none';
-                signoutButton.style.display = 'block';
+                document.getElementById('authorize_button').style.display = 'none';
+                document.getElementById('signout_button').style.display = 'block';
                 listContacts();
             } else {
-                authorizeButton.style.display = 'block';
-                signoutButton.style.display = 'none';
+                document.getElementById('authorize_button').style.display = 'block';
+                document.getElementById('signout_button').style.display = 'none';
             }
         }
 
@@ -85,26 +85,4 @@
                                 var email = person.emailAddresses[0].value;
                                 appendPre(name + ': ' + email);
                             }
-                        } else {
-                            appendPre('Contato sem nome');
                         }
-                    }
-                } else {
-                    appendPre('Nenhum contato encontrado.');
-                }
-            });
-        }
-
-        // Funções auxiliares
-        function appendPre(message) {
-            var pre = document.getElementById('content');
-            var textContent = document.createTextNode(message + '\n');
-            pre.appendChild(textContent);
-        }
-
-
-    </script>
-
-</body>
-
-</html>
