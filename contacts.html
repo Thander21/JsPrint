@@ -150,6 +150,45 @@
                 },
                 'Connections:\n');
             document.getElementById('content').innerText = output;
+
+
+            /**
+ * Print the list of connections in a table.
+ */
+            async function listConnectionNames() {
+                let response;
+                try {
+                    // Fetch first 10 connections
+                    response = await gapi.client.people.people.connections.list({
+                        'resourceName': 'people/me',
+                        'pageSize': 10,
+                        'personFields': 'names,emailAddresses,phoneNumbers',
+                    });
+                } catch (err) {
+                    document.getElementById('content').innerText = err.message;
+                    return;
+                }
+                const connections = response.result.connections;
+                if (!connections || connections.length == 0) {
+                    document.getElementById('content').innerText = 'No connections found.';
+                    return;
+                }
+
+                // Construct the table HTML
+                let tableHTML = '<table><thead><tr><th>Name</th><th>Email</th><th>Phone</th></tr></thead><tbody>';
+                for (let i = 0; i < connections.length; i++) {
+                    const person = connections[i];
+                    const name = person.names ? person.names[0].displayName : 'Unknown';
+                    const email = person.emailAddresses ? person.emailAddresses[0].value : '';
+                    const phone = person.phoneNumbers ? person.phoneNumbers[0].value : '';
+                    tableHTML += `<tr><td>${name}</td><td>${email}</td><td>${phone}</td></tr>`;
+                }
+                tableHTML += '</tbody></table>';
+
+                // Display the table
+                document.getElementById('content').innerHTML = tableHTML;
+            }
+
         }
     </script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
