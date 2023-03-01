@@ -7,13 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo de utilização da API do Google People em JavaScript</title>
     <script src="https://apis.google.com/js/api.js"></script>
+
 </head>
 
 <body>
     <h1>Autorização google</h1>
-    <button id="authorizeButton" style="display: none;">Autorizar</button>
-    <button id="signoutButton" style="display: none;">Sair</button>
+    <button id="authorize-button" style="display: none;">Autorizar</button>
+    <button id="signout-button" style="display: none;">Sair</button>
     <pre id="output"></pre>
+
+
 
     <script>
 
@@ -39,8 +42,8 @@
 
                 // Verifica o status de autenticação atual
                 updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-                authorizeButton.onclick = handleAuthClick;
-                signoutButton.onclick = handleSignoutClick;
+                document.getElementById('authorize-button').onclick = handleAuthClick;
+                document.getElementById('signout-button').onclick = handleSignoutClick;
             }, function (error) {
                 console.log(JSON.stringify(error, null, 2));
             });
@@ -49,12 +52,12 @@
         // Funções de autenticação
         function updateSigninStatus(isSignedIn) {
             if (isSignedIn) {
-                authorizeButton.style.display = 'none';
-                signoutButton.style.display = 'block';
+                document.getElementById('authorize-button').style.display = 'none';
+                document.getElementById('signout-button').style.display = 'block';
                 listContacts();
             } else {
-                authorizeButton.style.display = 'block';
-                signoutButton.style.display = 'none';
+                document.getElementById('authorize-button').style.display = 'block';
+                document.getElementById('signout-button').style.display = 'none';
             }
         }
 
