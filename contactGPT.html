@@ -17,6 +17,7 @@
 
     <script>
 
+
         // Variáveis globais
         var CLIENT_ID = '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';
         var DISCOVERY_DOCS = ["https://people.googleapis.com/$discovery/rest?version=v1"];
@@ -38,8 +39,8 @@
 
                 // Verifica o status de autenticação atual
                 updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-                document.getElementById('authorize_button').onclick = handleAuthClick;
-                document.getElementById('signout_button').onclick = handleSignoutClick;
+                authorizeButton.onclick = handleAuthClick;
+                signoutButton.onclick = handleSignoutClick;
             }, function (error) {
                 console.log(JSON.stringify(error, null, 2));
             });
@@ -48,12 +49,12 @@
         // Funções de autenticação
         function updateSigninStatus(isSignedIn) {
             if (isSignedIn) {
-                document.getElementById('authorize_button').style.display = 'none';
-                document.getElementById('signout_button').style.display = 'block';
+                authorizeButton.style.display = 'none';
+                signoutButton.style.display = 'block';
                 listContacts();
             } else {
-                document.getElementById('authorize_button').style.display = 'block';
-                document.getElementById('signout_button').style.display = 'none';
+                authorizeButton.style.display = 'block';
+                signoutButton.style.display = 'none';
             }
         }
 
@@ -85,4 +86,26 @@
                                 var email = person.emailAddresses[0].value;
                                 appendPre(name + ': ' + email);
                             }
+                        } else {
+                            appendPre('Contato sem nome');
                         }
+                    }
+                } else {
+                    appendPre('Nenhum contato encontrado.');
+                }
+            });
+        }
+
+        // Funções auxiliares
+        function appendPre(message) {
+            var pre = document.getElementById('output');
+            var textContent = document.createTextNode(message + '\n');
+            pre.appendChild(textContent);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
