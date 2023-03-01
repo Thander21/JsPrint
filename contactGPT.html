@@ -42,12 +42,20 @@
 
                 // Verifica o status de autenticação atual
                 updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-                document.getElementById('authorize-button').onclick = handleAuthClick;
-                document.getElementById('signout-button').onclick = handleSignoutClick;
+
+                // Atribui as referências aos botões
+                authorizeButton = document.getElementById('authorize_button');
+                signoutButton = document.getElementById('signout_button');
+
+                // Atribui os eventos de clique aos botões
+                authorizeButton.onclick = handleAuthClick;
+                signoutButton.onclick = handleSignoutClick;
+
             }, function (error) {
                 console.log(JSON.stringify(error, null, 2));
             });
         }
+
 
         // Funções de autenticação
         function updateSigninStatus(isSignedIn) {
